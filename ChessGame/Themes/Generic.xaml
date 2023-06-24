@@ -1,0 +1,167 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:ChessGame.ChessShapes">
+
+    <Style TargetType="Path" x:Key="StaticPath">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="StrokeThickness" Value="4.5"/>
+        <Setter Property="Stretch" Value="Uniform"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="Opacity" Value="0.6"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <RotateTransform Angle="0"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Effect">
+            <Setter.Value>
+                <BlurEffect Radius="10" KernelType="Gaussian" RenderingBias="Performance"/>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <EventTrigger RoutedEvent="Mouse.MouseEnter">
+                <BeginStoryboard x:Name="bsAnimation">
+                    <Storyboard >
+                        <!--Mouse Enter-->
+                        <ThicknessAnimation
+                            Storyboard.TargetProperty="Margin" To="7 0 -7 0" Duration="0:0:0:0.2"/>
+
+                        <DoubleAnimation
+                            Storyboard.TargetProperty="(Effect).(BlurEffect.Radius)" To="0"
+                            />
+
+                        <ThicknessAnimation BeginTime="0:0:0:2"
+                                            Storyboard.TargetProperty="Margin" To="0" Duration="0:0:0:0.2"/>
+
+                        <DoubleAnimation BeginTime="0:0:0:2"
+                                         Storyboard.TargetProperty="(Effect).(BlurEffect.Radius)" To="10"
+                                         />
+
+
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+
+        </Style.Triggers>
+    </Style>
+    <!--Style And Template Pawn-->
+    <Style TargetType="{x:Type local:ccPawn}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ccPawn}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Path Style="{StaticResource StaticPath}" Stroke="{TemplateBinding Stroke}" ToolTip="Pawn"
+                                  Data="M51.677,55.355c0.272-0.428,0.43-0.932,0.43-1.463c0-1.488-1.213-2.701-2.701-2.701h-3.407L42.13,27.973 c0.86-0.485,1.432-1.403,1.432-2.455c0-0.348-0.063-0.688-0.188-1.005c2.492-2.684,3.904-6.252,3.904-9.926 C47.278,6.544,40.735,0,32.692,0S18.104,6.544,18.104,14.587c0,3.634,1.391,7.176,3.84,9.854c-0.141,0.337-0.213,0.702-0.213,1.077 c0,1.024,0.533,1.922,1.363,2.418l-3.457,23.255h-3.278c-1.49,0-2.701,1.213-2.701,2.701c0,0.865,0.406,1.637,1.041,2.131 c-0.666,1.086-1.041,2.494-1.041,3.994c0,1.886,0.594,3.623,1.607,4.762v0.158c0,1.059,0.863,1.921,1.922,1.921h31.391 c0.76,0,1.42-0.445,1.73-1.091c1.731-0.819,2.893-3.069,2.893-5.75C53.2,58.178,52.628,56.484,51.677,55.355z M49.134,63.872 l-0.828,0.21v0.585H17.456v-0.825l-0.363-0.326c-0.756-0.682-1.246-2.053-1.246-3.498c0-1.467,0.479-2.809,1.246-3.5l0.363-0.326 l-0.004-1.786h-1.093c-0.281,0-0.512-0.229-0.512-0.513c0-0.282,0.23-0.512,0.512-0.512h5.168l4.023-27.077l-1.082-0.16 c-0.316-0.048-0.547-0.311-0.547-0.626c0-0.169,0.066-0.329,0.188-0.45l0.783-0.789l-0.799-0.771 c-2.412-2.326-3.797-5.577-3.797-8.92c0-6.835,5.563-12.396,12.396-12.396c6.836,0,12.396,5.562,12.396,12.396 c0,3.371-1.4,6.639-3.842,8.965l-0.781,0.743l0.732,0.792c0.078,0.087,0.174,0.231,0.174,0.431c0,0.326-0.25,0.595-0.578,0.626 l-1.17,0.11l4.521,27.127h5.26c0.281,0,0.512,0.229,0.512,0.512c0,0.203-0.123,0.387-0.309,0.469l-1.961,0.85l1.832,1.096 c0.738,0.44,1.531,1.789,1.531,3.711C51.011,62.135,50.058,63.641,49.134,63.872z M29.3,31.019l-3.098,18.377 c-0.084,0.506-0.521,0.863-1.016,0.863c-0.059,0-0.115-0.006-0.174-0.017c-0.563-0.095-0.941-0.627-0.846-1.188l3.096-18.38 c0.096-0.561,0.627-0.942,1.189-0.844C29.017,29.924,29.394,30.457,29.3,31.019z M30.511,4.492c0.152,0.43-0.074,0.901-0.504,1.053 c-7.484,2.632-6.523,8.936-6.48,9.203c0.076,0.449-0.229,0.876-0.68,0.95c-0.045,0.008-0.092,0.011-0.137,0.011 c-0.396,0-0.746-0.286-0.813-0.689c-0.014-0.078-1.217-7.946,7.561-11.034C29.888,3.833,30.361,4.061,30.511,4.492z">
+                            </Path>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Style And Template Knight-->
+    <Style TargetType="{x:Type local:ccKnight}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ccKnight}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Path
+                                Style="{StaticResource StaticPath}" Stroke="{TemplateBinding Stroke}" ToolTip="Knight"
+                                Data="M438.483,372.364h-26.669V158.16C411.814,70.949,340.865,0,253.659,0H86.661C73.809,0,63.389,10.42,63.389,23.273 c0,12.853,10.42,23.273,23.273,23.273h13.521v187.988c0,12.853,10.42,23.273,23.273,23.273h39.201 c6.173,0,12.093-2.453,16.455-6.817l32.084-32.082v56.076l-97.379,97.381H73.517c-12.853,0-23.273,10.42-23.273,23.273v93.091 c0,12.853,10.42,23.273,23.273,23.273h364.966c12.853,0,23.273-10.42,23.273-23.273v-93.091 C461.756,382.784,451.336,372.364,438.483,372.364z M250.925,301.079c4.366-4.364,6.817-10.283,6.817-16.457V162.721 c0-9.413-5.669-17.9-14.367-21.501c-8.693-3.601-18.707-1.612-25.363,5.044l-64.996,64.995h-6.288V46.545h106.93 c61.541,0,111.61,50.069,111.61,111.614v214.204H179.641L250.925,301.079z M415.21,465.455H96.79v-46.545H415.21V465.455z"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Style And Template Bishop-->
+    <Style TargetType="{x:Type local:ccBishop}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ccBishop}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Path
+                                Style="{StaticResource StaticPath}" Stroke="{TemplateBinding Stroke}" ToolTip="Bishop"
+                                Data="M30.067,36.898v-4.81h-2.271v-8.124h2.271v-6.29H25.42c2.008-1.224,3.354-3.427,3.354-5.943 c0-3.563-5.572-10.119-6.207-10.855L21.809,0l-0.757,0.877c-0.636,0.736-6.206,7.292-6.206,10.855c0,2.518,1.348,4.721,3.354,5.943 h-5.078v6.29h2.271v8.124h-2.271v4.81h-2.873v6.29H32.94v-6.29H30.067z M16.846,11.733c0-1.896,2.791-5.966,4.963-8.644 c2.174,2.675,4.965,6.744,4.965,8.644c0,2.736-2.229,4.964-4.965,4.964C19.073,16.697,16.846,14.469,16.846,11.733z M15.121,19.676 h12.945v2.29H15.121V19.676z M25.795,23.966v8.046h-8.403v-8.046H25.795z M15.121,34.089h12.945v2.29H15.121V34.089z M30.94,41.188 H12.25v-2.29h18.69V41.188z"
+                                />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Style And Template Rook-->
+    <Style TargetType="{x:Type local:ccRook}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ccRook}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid >
+                            <Path
+                                Style="{StaticResource StaticPath}" Stroke="{TemplateBinding Stroke}" ToolTip="Rook"
+                                Data="M163.66,162.038V74.109h15.433V0H139.97v25.469h-14.286V0h-41.47v25.469H69.927V0H30.804v74.109h15.433v87.929H26.265 v47.859h157.368v-47.859H163.66z M42.909,12.099h14.913v25.47h38.497v-25.47h17.259v25.47h38.497v-25.47h14.913v49.896H42.909 V12.099z M58.342,160.3V74.972h93.207V160.3H58.342L58.342,160.3z M171.527,197.792H38.37v-23.648h133.157V197.792z"
+                                />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Style And Template Queen-->
+    <Style TargetType="{x:Type local:ccQueen}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ccQueen}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Path
+                                Style="{StaticResource StaticPath}" Stroke="{TemplateBinding Stroke}" ToolTip="Queen"
+                                Data="M28.21,33.188v-4.809h-2.271v-10.33h2.271v-6.29h-0.828c0.097-0.089,0.188-0.179,0.271-0.27 c1.369-1.516,2.054-3.318,1.873-4.945c-0.121-1.122-0.668-2.081-1.537-2.698c-1.104-0.786-2.582-0.927-4.071-0.531 C23.331,1.395,21.688,0,19.737,0c-1.951,0-3.592,1.396-4.179,3.312c-1.492-0.396-2.968-0.254-4.073,0.532 c-0.869,0.617-1.416,1.576-1.538,2.698c-0.179,1.627,0.505,3.429,1.874,4.945c0.076,0.084,0.169,0.176,0.268,0.269h-0.823v6.29 h2.271v10.332h-2.271v4.81H8.393v6.289h22.691v-6.289H28.21L28.21,33.188L28.21,33.188z M26.831,5.477 c0.407,0.291,0.646,0.723,0.709,1.286c0.112,1.044-0.398,2.31-1.369,3.385c-0.461,0.509-1.502,1.171-2.345,1.611h-2.753 c0.133-0.331,0.234-0.676,0.275-1.05c0.1-0.904-0.076-1.86-0.479-2.793c0.18-0.279,0.379-0.552,0.612-0.812 C23.102,5.313,25.551,4.569,26.831,5.477z M19.737,2.002c1.116,0,2.048,0.89,2.33,2.09c-0.737,0.43-1.443,0.985-2.067,1.673 c-0.094,0.104-0.168,0.216-0.256,0.322c-0.089-0.108-0.172-0.218-0.268-0.323c-0.622-0.688-1.328-1.243-2.067-1.673 C17.689,2.89,18.621,2.002,19.737,2.002z M13.305,10.15c-0.973-1.076-1.485-2.342-1.371-3.386c0.062-0.563,0.301-0.995,0.709-1.286 c1.279-0.908,3.729-0.164,5.348,1.628c0.973,1.076,1.485,2.342,1.37,3.386c-0.062,0.553-0.294,0.978-0.69,1.268h-3.316 C14.657,11.3,13.678,10.562,13.305,10.15z M13.264,13.759h1.515c0.015,0.008,0.032,0.02,0.045,0.027l0.017-0.027h11.37v2.29H13.265 L13.264,13.759L13.264,13.759z M23.938,18.05v10.253h-8.403V18.05H23.938z M13.264,30.381H26.21v2.29H13.264V30.381L13.264,30.381z M29.083,37.479H10.392v-2.291h18.691V37.479z"
+                                />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Style And Template King-->
+    <Style TargetType="{x:Type local:ccKing}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ccKing}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Path
+                                Style="{StaticResource StaticPath}" Stroke="{TemplateBinding Stroke}" ToolTip="King"
+                                Data="M28.103,32.97v-4.81h-2.271V15.557h2.271v-4.453V9.267V0.106l-4.832,3.488l-3.75-2.772L15.706,3.58L11.157,0v9.267v1.837 v4.453h2.271V28.16h-2.271v4.81H8.284v6.29h22.691v-6.29H28.103z M13.156,4.121l2.496,1.964l3.853-2.784l3.75,2.771l2.849-2.055 v5.088H13.157L13.156,4.121L13.156,4.121z M13.156,11.268h12.946v2.29H13.156V11.268z M23.831,15.558v12.525h-8.404V15.558H23.831z M13.156,30.16h12.946v2.289H13.156V30.16z M28.976,37.26H10.284v-2.29h18.691V37.26z"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

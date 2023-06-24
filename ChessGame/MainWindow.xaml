@@ -1,0 +1,142 @@
+﻿<Window x:Class="ChessGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChessGame"
+        xmlns:chess="clr-namespace:ChessGame.ChessShapes"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        Height="750"
+        Width="1200"
+        MouseDown="Window_MouseDown"
+        AllowsTransparency="True"
+        Background="Transparent"
+        >
+    <Border BorderBrush="NavajoWhite"
+            Background="Black"
+            BorderThickness="3" CornerRadius="20">
+
+        <Grid Margin="2,3,2,1" x:Name="GrdMain">
+
+            <Grid.Resources>
+                <SolidColorBrush Color="Cyan" x:Key="scbWhtiePlayer"/>
+                <SolidColorBrush Color="Orange" x:Key="scbBlackPlayer"/>
+            </Grid.Resources>
+            <!--ColumnDefinitions-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="149"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <!--RowDefinitions-->
+            <Grid.RowDefinitions>
+                <!--Black-->
+                <RowDefinition/>
+                <RowDefinition/>
+                <!--White-->
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="172.5"/>
+                <RowDefinition/>
+
+            </Grid.RowDefinitions>
+
+            <!--Start Player Black-->
+            <!--رخ-->
+            <chess:ccRook Grid.Column="0" Stroke="{StaticResource scbWhtiePlayer}"/>
+            <chess:ccRook Grid.Column="7" Stroke="{StaticResource scbWhtiePlayer}"/>
+
+            <!--اسب-->
+            <chess:ccKnight Grid.Column="1" Stroke="{StaticResource scbWhtiePlayer}"/>
+            <chess:ccKnight Grid.Column="6" Stroke="{StaticResource scbWhtiePlayer}"/>
+
+            <!--فیل-->
+            <chess:ccBishop Grid.Column="2" Stroke="{StaticResource scbWhtiePlayer}"/>
+            <chess:ccBishop Grid.Column="5" Stroke="{StaticResource scbWhtiePlayer}"/>
+
+            <!--شاه-->
+            <chess:ccKing Grid.Column="3" Stroke="{StaticResource scbWhtiePlayer}"/>
+
+            <!--وزیر-->
+            <chess:ccQueen Grid.Column="4" Stroke="{StaticResource scbWhtiePlayer}"/>
+
+
+            <!--سرباز-->
+            <chess:ccPawn Grid.Row="1" Grid.Column="0" Stroke="{StaticResource scbWhtiePlayer}"/>
+            <chess:ccPawn Grid.Row="1" Grid.Column="1" Stroke="{StaticResource scbWhtiePlayer}"/>
+            <chess:ccPawn Grid.Row="1" Grid.Column="2" Stroke="{StaticResource scbWhtiePlayer}"/>
+            <chess:ccPawn Grid.Row="1" Grid.Column="3" Stroke="{StaticResource scbWhtiePlayer}"/>
+            <chess:ccPawn Grid.Row="1" Grid.Column="4" Stroke="{StaticResource scbWhtiePlayer}"/>
+            <chess:ccPawn Grid.Row="1" Grid.Column="5" Stroke="{StaticResource scbWhtiePlayer}"/>
+            <chess:ccPawn Grid.Row="1" Grid.Column="6" Stroke="{StaticResource scbWhtiePlayer}"/>
+            <chess:ccPawn Grid.Row="1" Grid.Column="7" Stroke="{StaticResource scbWhtiePlayer}"/>
+            <!--End Player Black-->
+
+
+            <Label
+                Grid.Row="2" Grid.ColumnSpan="7"
+                Content="| Brok Developer |"
+                Foreground="White"
+                FontSize="32" VerticalAlignment="Center"
+                HorizontalAlignment="Center" FontFamily="Bahnschrift Light"
+                />
+
+
+            <Label
+                Grid.Row="2" Grid.ColumnSpan="3"
+                Content="| Telegram : @BrokDotNet | "
+                Foreground="Gold"   FontFamily="Bahnschrift Light"
+                FontSize="32" VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                />
+            <!--Start Player White-->
+            <!--رخ-->
+            <chess:ccRook Grid.Row="4" Grid.Column="0" Stroke="{StaticResource scbBlackPlayer}"/>
+            <chess:ccRook Grid.Row="4" Grid.Column="7" Stroke="{StaticResource scbBlackPlayer}"/>
+
+            <!--اسب-->
+            <chess:ccKnight Grid.Row="4" Grid.Column="1" Stroke="{StaticResource scbBlackPlayer}"/>
+            <chess:ccKnight Grid.Row="4" Grid.Column="6" Stroke="{StaticResource scbBlackPlayer}"/>
+
+            <!--فیل-->
+            <chess:ccBishop Grid.Row="4" Grid.Column="2" Stroke="{StaticResource scbBlackPlayer}"/>
+            <chess:ccBishop Grid.Row="4" Grid.Column="5" Stroke="{StaticResource scbBlackPlayer}"/>
+
+            <!--شاه-->
+            <chess:ccKing Grid.Row="4" Grid.Column="3" Stroke="{StaticResource scbBlackPlayer}"/>
+
+            <!--وزیر-->
+            <chess:ccQueen Grid.Row="4" Grid.Column="4" Stroke="{StaticResource scbBlackPlayer}"/>
+
+
+            <!--سرباز-->
+            <chess:ccPawn Grid.Row="3" Grid.Column="0" Stroke="{StaticResource scbBlackPlayer}"/>
+            <chess:ccPawn Grid.Row="3" Grid.Column="1" Stroke="{StaticResource scbBlackPlayer}"/>
+            <chess:ccPawn Grid.Row="3" Grid.Column="2" Stroke="{StaticResource scbBlackPlayer}"/>
+            <chess:ccPawn Grid.Row="3" Grid.Column="3" Stroke="{StaticResource scbBlackPlayer}"/>
+            <chess:ccPawn Grid.Row="3" Grid.Column="4" Stroke="{StaticResource scbBlackPlayer}"/>
+            <chess:ccPawn Grid.Row="3" Grid.Column="5" Stroke="{StaticResource scbBlackPlayer}"/>
+            <chess:ccPawn Grid.Row="3" Grid.Column="6" Stroke="{StaticResource scbBlackPlayer}"/>
+            <chess:ccPawn Grid.Row="3" Grid.Column="7" Stroke="{StaticResource scbBlackPlayer}"/>
+            <!--Ebd Player Wtite-->
+
+
+
+
+
+
+
+
+
+
+
+
+        </Grid>
+    </Border>
+</Window>
